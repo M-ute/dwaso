@@ -53,7 +53,13 @@ const Navbar = () => {
                     )}
                 </button>
 
-                <Link href="/login" className="shrink-0">Sign in</Link>
+                {/* <Link href="/login" className="shrink-0">Sign in</Link> */}
+                <Link 
+                    href="/login" 
+                    className="shrink-0 rounded-md bg-gray-800 px-3 py-1.5 text-sm font-medium text-gray-300 transition-colors hover:bg-gray-700"
+                >
+                    Sign in
+                </Link>
             </div>
         </nav>
     )
