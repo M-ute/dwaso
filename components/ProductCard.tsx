@@ -32,7 +32,7 @@ const ProductCard = ({product}:{product:ProductType}) => {
                     </div>
                     {/* COLORS */}
                     <div className="flex flex-col gap-1">
-                        <span className="text-gray-500">Color</span>
+                        <span className="text-gray-600">Color</span>
                         <div className="flex items-center gap-2">
                              {product.colors.map(color => (
                                     <div className="" key={color}>
