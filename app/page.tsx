@@ -1,5 +1,6 @@
 import ProductList from "@/components/ProductList"
 import Image from "next/image"
+import { Suspense } from "react"
 
 const Homepage = () => {
   return (
@@ -7,7 +8,9 @@ const Homepage = () => {
       <div className="relative aspect-2/1 w-full overflow-hidden rounded-lg">
         <Image src="/featured2.png" alt="Featured Product" fill />
       </div>
-      <ProductList/>
+      <Suspense fallback={<div>Loading...</div>}>
+        <ProductList/>
+      </Suspense>
     </div>
   )
 }
