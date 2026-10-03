@@ -1,10 +1,25 @@
 "use client"
 
 import { ProductType } from "@/app/types"
+import { ShoppingBag, ShoppingBagIcon, ShoppingBasket, ShoppingCart } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { useState } from "react"
 
 const ProductCard = ({product}:{product:ProductType}) => {
+    // GET SIZE, COLOR AND ADDTOCART INFORMATION
+    const [productTypes, setProductTypes] = useState({
+        size:product.sizes[0],
+        color:product.colors[0]
+    });
+
+    // CHANGE STATE OF PRODUCT UPON CLICK ON SIZE, COLOR
+    const handleProductType = ({type,value}:{type:"size" | "color", value:string})=> {
+         setProductTypes((prev) => ({
+            ...prev,
+            [type]: value,
+         }));
+    };
     return (
         <div className="shadow-lg rounded-lg overflow-hidden">
             {/* IMAGE */}
@@ -22,7 +37,12 @@ const ProductCard = ({product}:{product:ProductType}) => {
                     {/* SIZE */}
                     <div className="flex flex-col gap-1">
                         <span className="text-gray-500">Size</span>
-                        <select name="size" id="size" className="ring ring-gray-400 rounded-md px-1 py-1 bg-gray-100">
+                        <select 
+                                name="size" id="size" 
+                                className="ring ring-gray-400 rounded-md px-1 py-1 bg-gray-100" 
+                                onChange={(e) =>
+                                        handleProductType({ type: "size", value: e.target.value })
+                                    }>
                             {
                                 product.sizes.map(size=>(
                                     <option key={size } value={size}>{size.toUpperCase()}</option>
@@ -35,19 +55,26 @@ const ProductCard = ({product}:{product:ProductType}) => {
                         <span className="text-gray-600">Color</span>
                         <div className="flex items-center gap-2">
                              {product.colors.map(color => (
-                                    <div className="" key={color}>
-                                        <div className="w-3.5 h-3.5 rounded-full" style={{backgroundColor:color}}/>
-
+                                    <div className="" key={color} onClick={()=>handleProductType({type:"color", value:color})}>
+                                        <div className="w-3.5 h-3.5 rounded-full" 
+                                             style={{backgroundColor:color}}/>
                                     </div>
                                 )
                              )}
                         </div>
                     </div>
                 </div>
-                <p className="font-extrabold text-lg">${product.price}</p>
+                {/* PRICE AND ADD TO CART BUTTON */} 
+                <div className="flex items-center justify-between gap-2 ">
+                    <p className="font-extrabold text-lg">${product.price}</p>
+                    <button className="ring-1 ring-gray-200 shadow-lg rounded-md px-2 py-1 cursor-pointer text-sm hover:text-white hover:bg-gray-800 transition-all duration-300 flex items-center gap-2">
+                        <ShoppingCart className="w-4 h-4"/>
+                        Add to Cart
+                    </button>
+                </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default ProductCard
