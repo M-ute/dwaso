@@ -3,6 +3,7 @@
 import { ProductsType, ProductType } from "@/app/types"
 import Categories from "./Categories"
 import ProductCard from "./ProductCard"
+import Link from "next/dist/client/link"
 
 const products:ProductsType  = [
     {
@@ -12,7 +13,7 @@ const products:ProductsType  = [
         description: "this has to be the full description.",
         price: "39.99",
         sizes: ["sm", "m", "lg", "xl", "xxl"],
-        colors: ["gray", "purple ", "green"],
+        colors: ["gray", "purple", "green"],
         images: {
             gray: "/products/1g.png",
             purple: "/products/1p.png",
@@ -80,9 +81,9 @@ const products:ProductsType  = [
         description: "this has to be the full description.",
         price: "39.99",
         sizes: ["sm", "m", "lg", "xl", "xxl"],
-        colors: ["green", "white"],
+        colors: ["gray", "white"],
         images: {
-            green: "/products/6g.png",
+            gray: "/products/6g.png",
             white: "/products/6w.png",
         },
         
@@ -94,9 +95,9 @@ const products:ProductsType  = [
         description: "this has to be the full description.",
         price: "39.99",
         sizes: ["sm", "m", "lg", "xl", "xxl"],
-        colors: ["green", "purple"],
+        colors: ["gray", "purple"],
         images: {
-            green: "/products/7g.png",
+            gray: "/products/7g.png",
             purple: "/products/7p.png",
         },
         
@@ -108,9 +109,9 @@ const products:ProductsType  = [
         description: "this has to be the full description.",
         price: "39.99",
         sizes: ["sm", "m", "lg", "xl", "xxl"],
-        colors: ["black", "green"],
+        colors: ["blue", "green"],
         images: {
-            black: "/products/8b.png",
+            blue: "/products/8b.png",
             green: "/products/8gr.png",
         },
         
@@ -118,7 +119,7 @@ const products:ProductsType  = [
 
 ]
 
-const ProductList = () => {
+const ProductList = ({category}:{category:string}) => {
     return (
         <div className="w-full ">
             <Categories/>
@@ -129,6 +130,12 @@ const ProductList = () => {
                     ))
                 }
             </div>
+            <Link 
+                href={category ? `/products/?category=${category}` : "/products"}
+                className="flex justify-end mt-4 underline text-sm text-gray-500">
+                
+                View all Products
+            </Link>
         </div>
     )
 }

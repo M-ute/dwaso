@@ -18,7 +18,7 @@ const Navbar = () => {
                     alt="Dwaso"
                     width={36}
                     height={36}
-                    className="w-6 h-6 md:w-9 md:h-9"
+                    className="w-10 h-10 md:w-12 md:h-12 "
                 />
                 <p className="hidden md:block text-md font-extrabold tracking-widest">DWASO</p>
             </Link>
