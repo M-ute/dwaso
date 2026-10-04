@@ -158,8 +158,8 @@ const CartPageContent = () => {
                 </div>
                 {activeStep === 1 && (
                     <button onClick={()=>router.push("/cart?step=2", {scroll: false})}
-                    className="w-full bg-gray-600 hover:bg-gray-800 transition-all 
-                               duration-300 text-white p-2 rounded-lg cursor-pointer flex items-center justify-center gap-3  ">
+                    className="w-full bg-gray-700 hover:bg-gray-800 transition-all 
+                               duration-200 text-white p-2 rounded-lg cursor-pointer flex items-center justify-center gap-3  ">
                     Continue
                     <ArrowBigRightDash/>
                 </button>
