@@ -19,7 +19,7 @@ const Filter = () => {
             <span className="">Sort By: </span>
             <select name="sort" 
                     id="sort" 
-                      className="ring-1 ring-gray-200 rounded-sm shadow-md px-2 py-1" 
+                      className="ring-1 bg-gray-100 ring-gray-200 rounded-sm shadow-md px-2 py-1" 
                     onChange={ (e)=> handleFilter(e.target.value)}>
                 <option value="newest">Newest</option>
                 <option value="oldest">Oldest</option>
