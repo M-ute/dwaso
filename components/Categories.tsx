@@ -2,13 +2,11 @@
 
 import {
     Footprints,
-    Glasses,
+    Glasses,  
     Briefcase,
     Shirt,
     ShoppingBasket,
     Hand,
-    Venus,
-    Baby,
     ShirtIcon
 } from "lucide-react";
 import { usePathname, useSearchParams } from "next/navigation";
@@ -72,10 +70,10 @@ const Categories =  () => {
         const params = new URLSearchParams(searchParams);
         params.set("category",value || "all");
         router.push(`${pathname }?${params.toString()}` , {scroll : false});
-    }
+    };
 
     return (
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-8 gap-2 bg-gray-200 rounded-lg mb-4 text-sm ">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-8 gap-2 bg-gray-200 rounded-lg mt-4 mb-4 text-sm ">
             {categories.map(category => (
                 <div className={`flex items-center justify-center gap-2 cursor-pointer px-2 py-1 rounded-md my-2 ${
                     category.slug === selectedCategory ? "bg-white" : "text-gray-600" 

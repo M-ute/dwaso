@@ -4,6 +4,7 @@ import { ProductsType, ProductType } from "@/app/types"
 import Categories from "./Categories"
 import ProductCard from "./ProductCard"
 import Link from "next/dist/client/link"
+import Filter from "./Filter"
 
 const products:ProductsType  = [
     {
@@ -11,7 +12,7 @@ const products:ProductsType  = [
         name: "Plain T-Shirt",
         shortDescription: "Lorem Ipsum this is a description.",
         description: "this has to be the full description.",
-        price: "39.99",
+        price: 39.99,
         sizes: ["sm", "m", "lg", "xl", "xxl"],
         colors: ["gray", "purple", "green"],
         images: {
@@ -25,7 +26,7 @@ const products:ProductsType  = [
         name: "Hoodie-Checked",
         shortDescription: "Lorem Ipsum this is a description.",
         description: "this has to be the full description.",
-        price: "39.99",
+        price: 39.99,
         sizes: ["sm", "m", "lg", "xl", "xxl"],
         colors: ["gray","green"],
         images: {
@@ -38,7 +39,7 @@ const products:ProductsType  = [
         name: "Nike Ultraboost Pulse",
         shortDescription: "Lorem Ipsum this is a description.",
         description: "this has to be the full description.",
-        price: "39.99",
+        price: 39.99,
         sizes: ["sm", "m", "lg", "xl", "xxl"],
         colors: ["blue","black", "green"],
         images: {
@@ -52,7 +53,7 @@ const products:ProductsType  = [
         name: "New Balance T-Shirt",
         shortDescription: "Lorem Ipsum this is a description.",
         description: "this has to be the full description.",
-        price: "39.99",
+        price: 39.99,
         sizes: ["sm", "m", "lg", "xl", "xxl"],
         colors: ["white", "purple"],
         images: {
@@ -65,7 +66,7 @@ const products:ProductsType  = [
         name: "Nike Hoodie Plain",
         shortDescription: "Lorem Ipsum this is a description.",
         description: "this has to be the full description.",
-        price: "39.99",
+        price: 39.99,
         sizes: ["sm", "m", "lg", "xl", "xxl"],
         colors: ["black", "orange", "red"],
         images: {
@@ -79,7 +80,7 @@ const products:ProductsType  = [
         name: "Nike Air Force 1",
         shortDescription: "Lorem Ipsum this is a description.",
         description: "this has to be the full description.",
-        price: "39.99",
+        price: 39.99,
         sizes: ["sm", "m", "lg", "xl", "xxl"],
         colors: ["gray", "white"],
         images: {
@@ -93,7 +94,7 @@ const products:ProductsType  = [
         name: "Nike Ultraboost Pulse",
         shortDescription: "Lorem Ipsum this is a description.",
         description: "this has to be the full description.",
-        price: "39.99",
+        price: 39.99,
         sizes: ["sm", "m", "lg", "xl", "xxl"],
         colors: ["gray", "purple"],
         images: {
@@ -107,7 +108,7 @@ const products:ProductsType  = [
         name: "Long Sleeves",
         shortDescription: "Lorem Ipsum this is a description.",
         description: "this has to be the full description.",
-        price: "39.99",
+        price: 39.99,
         sizes: ["sm", "m", "lg", "xl", "xxl"],
         colors: ["blue", "green"],
         images: {
@@ -119,10 +120,11 @@ const products:ProductsType  = [
 
 ]
 
-const ProductList = ({category}:{category:string}) => {
+const ProductList = ({category, params}:{category:string, params: "homepage" | "products"}) => {
     return (
         <div className="w-full ">
             <Categories/>
+            {params === "products" &&  <Filter/>}
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-4 gap-8">
                 {
                     products.map(product => (
@@ -132,9 +134,9 @@ const ProductList = ({category}:{category:string}) => {
             </div>
             <Link 
                 href={category ? `/products/?category=${category}` : "/products"}
-                className="flex justify-end mt-4 underline text-sm text-gray-500">
+                className="flex justify-end mt-4 underline text-sm text-gray-500 ">
                 
-                View all Products
+                <div className="ring-1 ring-gray-200 shadow-md rounded-sm p-2 hover:bg-gray-800 hover:text-gray-100">View all Products</div>
             </Link>
         </div>
     )

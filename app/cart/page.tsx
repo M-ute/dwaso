@@ -1,0 +1,173 @@
+"use client"
+
+import { useRouter, useSearchParams } from "next/navigation";
+import { CartItemsType } from "../types";
+import {  ArrowBigRightDash, Trash2 } from "lucide-react";
+import { Router } from "next/router";
+import ShippingForm from "@/components/ShippingForm";
+import { useState } from "react";
+import PaymentForm from "@/components/PaymentForm";
+
+const steps = [
+    {
+        id:1,
+        title: "Shopping Cart"
+    },
+    {
+        id:2,
+        title: "Delivery Address"
+    },
+    { 
+        id:3,
+        title: "Payment Method"
+    }
+]
+
+//TEMPORARY DATA
+const cartItems:CartItemsType  = [
+    {
+        id : 1,
+        name: "Plain T-Shirt",
+        shortDescription: "Lorem Ipsum this is a description.",
+        description: "this has to be the full description.",
+        price: 39.99,
+        sizes: ["sm", "m", "lg", "xl", "xxl"],
+        colors: ["gray", "purple", "green"],
+        images: {
+            gray: "/products/1g.png",
+            purple: "/products/1p.png",
+            green: "/products/1gr.png",
+        },
+        quantity:1,
+        selectedSize: "m",
+        selectedColor: "purple" 
+},
+    {
+        id : 2,
+        name: "Hoodie-Checked",
+        shortDescription: "Lorem Ipsum this is a description.",
+        description: "this has to be the full description.",
+        price: 59.99,
+        sizes: ["sm", "m", "lg", "xl", "xxl"],
+        colors: ["gray","green"],
+        images: {
+            gray: "/products/2g.png",
+            green: "/products/2gr.png",
+        },
+        quantity:1,
+        selectedSize: "lg",
+        selectedColor: "gray"
+},
+{
+        id : 3,
+        name: "Nike Ultraboost Pulse",
+        shortDescription: "Lorem Ipsum this is a description.",
+        description: "this has to be the full description.",
+        price: 39.99,
+        sizes: ["sm", "m", "lg", "xl", "xxl"],
+        colors: ["blue","black", "green"],
+        images: {
+            blue: "/products/3b.png",
+            black: "/products/3bl.png",
+            green: "/products/3gr.png",
+        },
+        quantity:1,
+        selectedSize: "m",
+        selectedColor: "gray"
+        
+}
+]
+
+const CartPage = () => {
+    const searchParams = useSearchParams();
+    const router = useRouter ();
+    const [shippingForm, setShippingForm] = useState(null);
+
+    const activeStep = parseInt(searchParams.get("step") || "1")
+    return (
+        <div className="flex flex-col gap-8 items-center justify-center mt-12">
+        {/* TITLE */}
+        <h1 className="text-2xl font-medium">Your Shopping Cart</h1>
+        {/* STEP */}
+        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
+            {steps.map(step => (
+                <div className={`flex items-center gap-2 border-b-2 pb-4 ${step.id === activeStep ? "border-gray-800" : "border-gray-400"}`} 
+                     key={step.id}>
+                    <div className={`w-6 h-6 rounded-full text-white p-4 flex items-center justify-center ${step.id === activeStep ? "bg-gray-800" : "bg-gray-400"}`}>{step.id}</div>
+                    <p className={`text-sm font-medium ${step.id === activeStep ? "text-gray-800" : "text-gray-400"}`}>{step.title }</p>
+                </div>
+            ))}
+        </div>
+         {/* STEPS AND DETAILS */}
+         <div className="w-full flex flex-col lg:flex-row gap-16">
+            {/* STEP */}
+            <div className="w-full lg:w-7/12 shadow-lg border border-gray-100 p-8 rounded-lg flex flex-col gap-8">
+                {activeStep === 1 ? (cartItems.map((item) => (
+                    // SINGLE CART ITEM
+                    <div className="flex items-center justify-between" key={item.id}>
+                    {/* IMAGE AND DETAILS */}
+                    <div className=""></div>
+                    {/* DELETE BUTTON */}
+                    <button className="w-8 h-8 rounded-full bg-red-200 text-gray-800 flex items-center justify-center cursor-pointer">
+                        <Trash2 className="w-3 h-3"/>
+                    </button>
+
+                    </div>
+                ))) : 
+                activeStep === 2 ? (<ShippingForm/>) : (
+                activeStep === 3 && shippingForm ? <PaymentForm/> : 
+                <p className="text-sm text-gray-500 ">Please fill in the forms. </p>)}
+            </div>
+            {/* DETAILS */}
+            <div className="w-full lg:w-5/12 shadow-lg border border-gray-100 p-8 rounded-lg flex flex-col gap-8">
+                <h2 className="font-semibold">Cart Details</h2>
+                <div className="flex flex-col gap-4">
+                    <div className="flex justify-between text-sm ">
+                        <p className="  text-gray-500">Subtotal</p>
+                        <p className=" font-medium">
+                            $
+                            {cartItems.reduce(
+                                (acc, item) => acc +item.price * item.quantity,
+                                 0
+                            ).toFixed(2 )}
+                        </p>
+                    </div>
+                    <div className="flex justify-between text-sm ">
+                        <p className="  text-gray-500">Discount (10%)</p>
+                        <p className=" font-medium">
+                            $10
+                        </p>
+                    </div>
+                    <div className="flex justify-between text-sm ">
+                        <p className="  text-gray-500">Delivery Fee</p>
+                        <p className=" font-medium">
+                            $10
+                        </p>
+                    </div>
+                    <hr className="border-gray-200"/>
+                    <div className="flex justify-between  ">
+                        <p className="  text-gray-800 font-extrabold">TOTAL</p>
+                        <p className=" font-extrabold">
+                            $
+                            {cartItems.reduce(
+                                (acc, item) => acc +item.price * item.quantity,
+                                 0
+                            ).toFixed(2)}
+                        </p>
+                    </div>
+                    
+                </div>
+                {activeStep === 1 && (
+                    <button onClick={()=>router.push("/cart?step=2", {scroll: false})}
+                    className="w-full bg-gray-600 hover:bg-gray-800 transition-all 
+                               duration-300 text-white p-2 rounded-lg cursor-pointer flex items-center justify-center gap-3  ">
+                    Continue
+                    <ArrowBigRightDash/>
+                </button>
+                )}
+            </div>
+         </div>
+        </div>
+    );
+};
+export default CartPage;

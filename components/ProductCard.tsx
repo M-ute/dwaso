@@ -29,7 +29,7 @@ const ProductCard = ({product}:{product:ProductType}) => {
                         src={product.images[productTypes.color]} 
                         alt={product.name} 
                         fill 
-                        className=" object-cover hover:scale-110 transition-all duration-400"
+                        className=" object-cover hover:scale-106 transition-all duration-400"
                     />
                 </div>
             </Link>

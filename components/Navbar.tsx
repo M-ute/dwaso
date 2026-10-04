@@ -4,7 +4,8 @@ import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import SearchBar from "./SearchBar"
-import { Bell, Home, LucideShoppingCart, SearchIcon, XCircleIcon } from "lucide-react"
+import { Bell, Home, LucideShoppingCart, SearchIcon, ShoppingCart, XCircleIcon } from "lucide-react"
+import ShoppingCartIcon from "./ShoppingCartIcon"
 
 const Navbar = () => {
     const [showSearch, setShowSearch] = useState(false)
@@ -36,7 +37,7 @@ const Navbar = () => {
                         <Home className="w-4 h-4 text-gray-600" />
                     </Link>
                     <Bell className="w-4 h-4 text-gray-600" />
-                    <LucideShoppingCart className="w-4 h-4 text-gray-600" />
+                    <ShoppingCartIcon/>
                 </div>
 
                 {/* Toggle button: small screens only */}

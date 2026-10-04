@@ -9,9 +9,10 @@ const Homepage = async ({searchParams}: {searchParams: Promise<{category:string}
       <div className="relative aspect-2/1 w-full overflow-hidden rounded-lg">
         <Image src="/featured2.png" alt="Featured Product" fill />
       </div>
-      <Suspense fallback={<div>Loading...</div>}>
-        <ProductList category={category}/>
-      </Suspense>
+      
+      {/* <Suspense fallback={<div>Loading...</div>}> */}
+        <ProductList category={category} params="products"/>
+      {/* </Suspense> */}
     </div>
   )
 }
