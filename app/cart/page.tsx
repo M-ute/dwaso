@@ -1,12 +1,10 @@
 "use client"
 
-import { Suspense} from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { CartItemsType } from "../types";
 import {  ArrowBigRightDash, Trash2 } from "lucide-react";
-import { Router } from "next/router";
 import ShippingForm from "@/components/ShippingForm";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import PaymentForm from "@/components/PaymentForm";
 
 const steps = [
@@ -79,7 +77,7 @@ const cartItems:CartItemsType  = [
 }
 ]
 
-const CartPage = () => {
+const CartPageContent = () => {
     const searchParams = useSearchParams();
     const router = useRouter ();
     const [shippingForm, setShippingForm] = useState(null);
@@ -127,10 +125,10 @@ const CartPage = () => {
                         <p className="  text-gray-500">Subtotal</p>
                         <p className=" font-medium">
                             $
-                            {cartItems.reduce(
-                                (acc, item) => acc +item.price * item.quantity,
-                                 0
-                            ).toFixed(2 )}
+                            {cartItems.reduce<number>(
+                                (acc, item) => acc + Number(item.price) * Number(item.quantity),
+                                0
+                            ).toFixed(2)}
                         </p>
                     </div>
                     <div className="flex justify-between text-sm ">
@@ -150,9 +148,9 @@ const CartPage = () => {
                         <p className="  text-gray-800 font-extrabold">TOTAL</p>
                         <p className=" font-extrabold">
                             $
-                            {cartItems.reduce(
-                                (acc, item) => acc +item.price * item.quantity,
-                                 0
+                            {cartItems.reduce<number>(
+                                (acc, item) => acc + Number(item.price) * Number(item.quantity),
+                                0
                             ).toFixed(2)}
                         </p>
                     </div>
@@ -171,4 +169,12 @@ const CartPage = () => {
         </div>
     );
 };
+const CartPage = () => {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <CartPageContent />
+        </Suspense>
+    );
+};
+
 export default CartPage;

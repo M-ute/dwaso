@@ -12,7 +12,7 @@ const products:ProductsType  = [
         name: "Plain T-Shirt",
         shortDescription: "Lorem Ipsum this is a description.",
         description: "this has to be the full description.",
-        price: 39.99,
+        price: "39.99",
         sizes: ["sm", "m", "lg", "xl", "xxl"],
         colors: ["gray", "purple", "green"],
         images: {
@@ -26,7 +26,7 @@ const products:ProductsType  = [
         name: "Hoodie-Checked",
         shortDescription: "Lorem Ipsum this is a description.",
         description: "this has to be the full description.",
-        price: 39.99,
+        price: "39.99",
         sizes: ["sm", "m", "lg", "xl", "xxl"],
         colors: ["gray","green"],
         images: {
@@ -39,7 +39,7 @@ const products:ProductsType  = [
         name: "Nike Ultraboost Pulse",
         shortDescription: "Lorem Ipsum this is a description.",
         description: "this has to be the full description.",
-        price: 39.99,
+        price: "39.99",
         sizes: ["sm", "m", "lg", "xl", "xxl"],
         colors: ["blue","black", "green"],
         images: {
@@ -53,7 +53,7 @@ const products:ProductsType  = [
         name: "New Balance T-Shirt",
         shortDescription: "Lorem Ipsum this is a description.",
         description: "this has to be the full description.",
-        price: 39.99,
+        price: "39.99",
         sizes: ["sm", "m", "lg", "xl", "xxl"],
         colors: ["white", "purple"],
         images: {
@@ -66,7 +66,7 @@ const products:ProductsType  = [
         name: "Nike Hoodie Plain",
         shortDescription: "Lorem Ipsum this is a description.",
         description: "this has to be the full description.",
-        price: 39.99,
+        price: "39.99",
         sizes: ["sm", "m", "lg", "xl", "xxl"],
         colors: ["black", "orange", "red"],
         images: {
@@ -80,7 +80,7 @@ const products:ProductsType  = [
         name: "Nike Air Force 1",
         shortDescription: "Lorem Ipsum this is a description.",
         description: "this has to be the full description.",
-        price: 39.99,
+        price: "39.99",
         sizes: ["sm", "m", "lg", "xl", "xxl"],
         colors: ["gray", "white"],
         images: {
@@ -94,7 +94,7 @@ const products:ProductsType  = [
         name: "Nike Ultraboost Pulse",
         shortDescription: "Lorem Ipsum this is a description.",
         description: "this has to be the full description.",
-        price: 39.99,
+        price: "39.99",
         sizes: ["sm", "m", "lg", "xl", "xxl"],
         colors: ["gray", "purple"],
         images: {
@@ -108,7 +108,7 @@ const products:ProductsType  = [
         name: "Long Sleeves",
         shortDescription: "Lorem Ipsum this is a description.",
         description: "this has to be the full description.",
-        price: 39.99,
+        price: "39.99",
         sizes: ["sm", "m", "lg", "xl", "xxl"],
         colors: ["blue", "green"],
         images: {
