@@ -1,8 +1,8 @@
 "use client"
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { CartItemsType } from "../types";
-import {  ArrowBigRightDash, Trash2 } from "lucide-react";
+import { CartItemsType, ShippingFormInputs } from "../types";
+import { ArrowBigRightIcon, Trash2 } from "lucide-react";
 import ShippingForm from "@/components/ShippingForm";
 import { Suspense, useState } from "react";
 import PaymentForm from "@/components/PaymentForm";
@@ -81,7 +81,8 @@ const cartItems:CartItemsType  = [
 const CartPageContent = () => {
     const searchParams = useSearchParams();
     const router = useRouter ();
-    const [shippingForm, setShippingForm] = useState(null);
+    // const [shippingForm, setShippingForm] = useState(null);
+    const [shippingForm, setShippingForm] = useState<ShippingFormInputs | null>(null);
 
     const activeStep = parseInt(searchParams.get("step") || "1")
     return (
@@ -129,7 +130,7 @@ const CartPageContent = () => {
 
                     </div>
                 ))) : 
-                activeStep === 2 ? (<ShippingForm/>) : (
+                activeStep === 2 ? (<ShippingForm setShippingForm={setShippingForm}/>) : (
                 activeStep === 3 && shippingForm ? <PaymentForm/> : 
                 <p className="text-sm text-gray-500 ">Please fill in the forms. </p>)}
             </div>
@@ -173,12 +174,15 @@ const CartPageContent = () => {
                     
                 </div>
                 {activeStep === 1 && (
-                    <button onClick={()=>router.push("/cart?step=2", {scroll: false})}
-                    className="w-full bg-gray-700 hover:bg-gray-800 transition-all 
-                               duration-200 text-white p-2 rounded-lg cursor-pointer flex items-center justify-center gap-3  ">
-                    Continue
-                    <ArrowBigRightDash/>
-                </button>
+                    <div className="flex items-center justify-center">
+                        <button onClick={()=>router.push("/cart?step=2", {scroll: false})}
+                            className="w-2/3 bg-gray-700 hover:bg-gray-800 transition-all 
+                                    duration-200 text-white p-2 rounded-lg cursor-pointer flex items-center justify-center gap-2  ">
+                            Continue
+                            <ArrowBigRightIcon/>
+                        </button>
+                    </div>
+                    
                 )}
             </div>
          </div>

@@ -1,8 +1,10 @@
 import { ShippingFormInputs, shippingFormSchema } from "@/app/types";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { ArrowBigRightIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { SubmitHandler, useForm } from "react-hook-form";
 
-const ShippingForm = () => {
+const ShippingForm = ({setShippingForm} : {setShippingForm : (data:ShippingFormInputs) => void; }) => {
     const {
         register, 
         handleSubmit, 
@@ -10,8 +12,16 @@ const ShippingForm = () => {
     } = useForm<ShippingFormInputs>({
         resolver:zodResolver(shippingFormSchema)
     });
+
+    const router = useRouter();
+
+    const handleShippingForm:SubmitHandler<ShippingFormInputs > = (data) => {
+        setShippingForm(data);
+        router.push("/cart?step=3", {scroll: false })
+    }
+
     return (
-        <form className=" flex flex-col gap-4">
+        <form className=" flex flex-col gap-4" onSubmit={handleSubmit(handleShippingForm)}>
             {/* NAME FIELD */}
             <div className="flex flex-col gap-1">
                 <label htmlFor="name" className="text-sm text-gray-500 font-bold">Name</label>
@@ -43,14 +53,21 @@ const ShippingForm = () => {
             {/* CITY FIELD */}
              <div className="flex flex-col gap-1">
                 <label htmlFor="city" className="text-sm text-gray-500 font-bold">City</label>
-                <input type="text" id="email" placeholder="Accra" {...register("city")}
+                <input type="text" id="city" placeholder="Accra" {...register("city")}
                         className="border-b border-gray-200 py-2 px-2 outline-none text-sm"/>
-                {errors.name && <p className="text-xs text-red-500">{errors.name.message}</p>}
+                {errors.city && <p className="text-xs text-red-500">{errors.city.message}</p>}
             </div>
 
-            <button>
-
-            </button>
+            <div className="flex items-center justify-center">
+                <button 
+                    type="submit" 
+                    className="w-2/3 bg-gray-700 hover:bg-gray-800 transition-all 
+                               duration-200 text-white p-2 rounded-lg cursor-pointer flex items-center justify-center gap-2  ">
+                    Continue
+                    <ArrowBigRightIcon/>
+                </button>
+            </div>
+            
 
 
 
