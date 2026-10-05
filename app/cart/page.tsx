@@ -6,6 +6,7 @@ import {  ArrowBigRightDash, Trash2 } from "lucide-react";
 import ShippingForm from "@/components/ShippingForm";
 import { Suspense, useState } from "react";
 import PaymentForm from "@/components/PaymentForm";
+import Image from "next/image";
 
 const steps = [
     {
@@ -55,7 +56,7 @@ const cartItems:CartItemsType  = [
         },
         quantity:1,
         selectedSize: "lg",
-        selectedColor: "gray"
+        selectedColor: "green"
 },
 {
         id : 3,
@@ -72,7 +73,7 @@ const cartItems:CartItemsType  = [
         },
         quantity:1,
         selectedSize: "m",
-        selectedColor: "gray"
+        selectedColor: "green"
         
 }
 ]
@@ -104,12 +105,27 @@ const CartPageContent = () => {
                 {activeStep === 1 ? (cartItems.map((item) => (
                     // SINGLE CART ITEM
                     <div className="flex items-center justify-between" key={item.id}>
-                    {/* IMAGE AND DETAILS */}
-                    <div className=""></div>
-                    {/* DELETE BUTTON */}
-                    <button className="w-8 h-8 rounded-full bg-red-200 text-gray-800 flex items-center justify-center cursor-pointer">
-                        <Trash2 className="w-3 h-3"/>
-                    </button>
+                        {/* IMAGE AND DETAILS */}
+                        <div className="flex gap-8">
+                            {/* IMAGE */}
+                            <div className="relative w-32 h-32 bg-gray-50 rounded-lg overflow-hidden ">
+                                <Image src={item.images[item.selectedColor ]} alt={item.name} fill className="object-contain"/>
+                            </div>
+                            {/* ITEM DETAILS */}
+                            <div className="flex flex-col justify-between">
+                                <div className="flex flex-col gap-1">
+                                    <p className="text-sm font-bold">{item.name}</p>
+                                    <p className="text-xs text-gray-500">Quantity:{" "}{item.quantity}</p>
+                                    <p className="text-xs text-gray-500">Size:{" "}{item.selectedSize}</p>
+                                    <p className="text-xs text-gray-500">Color:{" "}{item.selectedColor}</p>  
+                                </div>
+                                <p className="font-extrabold">${item.price.toFixed(2)}</p>
+                            </div>
+                        </div>
+                        {/* DELETE BUTTON */}
+                        <button className="w-8 h-8 rounded-full bg-red-200 hover:bg-red-400 transition-all duration-300  text-gray-800 flex items-center justify-center cursor-pointer">
+                            <Trash2 className="w-3 h-3"/>
+                        </button>
 
                     </div>
                 ))) : 
@@ -118,7 +134,7 @@ const CartPageContent = () => {
                 <p className="text-sm text-gray-500 ">Please fill in the forms. </p>)}
             </div>
             {/* DETAILS */}
-            <div className="w-full lg:w-5/12 shadow-lg border border-gray-100 p-8 rounded-lg flex flex-col gap-8">
+            <div className="w-full lg:w-5/12 shadow-lg border border-gray-100 p-8 rounded-lg flex flex-col gap-8 h-max  ">
                 <h2 className="font-semibold">Cart Details</h2>
                 <div className="flex flex-col gap-4">
                     <div className="flex justify-between text-sm ">
