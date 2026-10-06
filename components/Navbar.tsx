@@ -41,18 +41,20 @@ const Navbar = () => {
                 </div>
 
                 {/* Toggle button: small screens only */}
-                <button
-                    type="button"
-                    onClick={() => setShowSearch((prev) => !prev)}
-                    aria-label={showSearch ? "Close search" : "Open search"}
-                    className="md:hidden shrink-0"
-                >
-                    {showSearch ? (
-                        <XCircleIcon className="w-4 h-4 text-gray-600" />
-                    ) : (
-                        <SearchIcon className="w-4 h-4 text-gray-600" />
-                    )}
-                </button>
+                    <button
+                        type="button"
+                        onClick={() => setShowSearch((prev) => !prev)}
+                        aria-label={showSearch ? "Close search" : "Open search"}
+                        className="md:hidden shrink-0"
+                            >
+                        {showSearch ? (
+                            <XCircleIcon className="w-4 h-4 text-gray-600" />
+                        ) : (
+                            <SearchIcon className="w-4 h-4 text-gray-600" />
+                        )}
+                    </button>
+                
+                
 
                 {/* <Link href="/login" className="shrink-0">Sign in</Link> */}
                 <Link 

@@ -82,7 +82,7 @@ const CartPageContent = () => {
     const searchParams = useSearchParams();
     const router = useRouter ();
     // const [shippingForm, setShippingForm] = useState(null);
-    const [shippingForm, setShippingForm] = useState<ShippingFormInputs | null>(null);
+    const [shippingForm, setShippingForm] = useState<ShippingFormInputs>();
 
     const activeStep = parseInt(searchParams.get("step") || "1")
     return (

@@ -21,7 +21,7 @@ type SearchBarProps = {
 
 const SearchBar = ({ inputRef }: SearchBarProps) => {
     return (
-        <div className="flex w-full items-center gap-2 rounded-md ring-1 ring-gray-300 px-2 py-1 shadow-md md:w-64">
+        <div className="flex w-full items-center gap-2 rounded-md ring-1 ring-gray-300 px-2 py-1 shadow-md md:w-64 ">
             <SearchIcon className="w-4 h-4 shrink-0 text-gray-500" />
             <input
                 ref={inputRef}
